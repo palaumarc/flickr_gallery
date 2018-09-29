@@ -1,8 +1,8 @@
 import React from 'react';
 
-const Gallery = ({ photos, onClickPhoto }) => (
+const Gallery = ({ children }) => (
     <div>
-        {photos.map(photo => <GalleryPhoto key={photo.id} photo={photo} onClick={() => onClickPhoto(photo)}/>)}
+        {children}
     </div>
 )
 
@@ -12,5 +12,7 @@ const GalleryPhoto = ({ photo, onClick }) => (
         <p>{photo.description}</p>
     </div>
 )
+
+Gallery.Photo = GalleryPhoto;
 
 export default Gallery;

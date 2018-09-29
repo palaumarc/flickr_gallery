@@ -25,17 +25,18 @@ class GalleryContainer extends Component {
 
     render() {
 
-        if (this.state.isLoading) {
+        const { selectedPhoto, isLoading, photos } = this.state;
+
+        if (isLoading) {
             return <Spin />;
         }
 
-        const photoDetail = (this.state.selectedPhoto) ?
-        <PhotoDetail photo={this.state.selectedPhoto} onClose={this.onClosePhotoDetail}/> : null;
-
         return (
             <Fragment>
-                <Gallery photos={this.state.photos} onClickPhoto={this.onClickPhoto} />
-                {photoDetail}
+                <Gallery>
+                    {photos.map(photo => <Gallery.Photo key={photo.id} photo={photo} onClick={() => this.onClickPhoto(photo)}/>)}
+                </Gallery>
+                {selectedPhoto ? <PhotoDetail photo={selectedPhoto} onClose={this.onClosePhotoDetail}/> : null}
             </Fragment>
         );
     }
