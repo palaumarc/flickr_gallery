@@ -34,7 +34,7 @@ class GalleryContainer extends Component {
 
         return (
             <Fragment>
-                <Gallery photos={this.state.photos} />
+                <Gallery photos={this.state.photos} onClickPhoto={this.onClickPhoto} />
                 {photoDetail}
             </Fragment>
         );
