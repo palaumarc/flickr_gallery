@@ -1,0 +1,46 @@
+/* The Modal (background) */
+.photo-detail {
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(83, 83, 83, 0.7);
+}
+
+/* Modal Content */
+.photo-detail-content {
+    position: relative;
+    margin: auto;
+    margin-top: 3%;
+    padding: 0;
+    width: 90%;
+    height:90%;
+}
+
+.photo-detail-content img {
+    margin: auto;
+    display: block;
+    width: 90%;
+    height: 90%;
+    object-fit: scale-down;
+}
+
+/* The Close Button */
+.photo-detail-close {
+    color: white;
+    position: absolute;
+    top: 10px;
+    right: 25px;
+    font-size: 35px;
+    font-weight: bold;
+}
+
+.photo-detail-close:hover,
+.photo-detail-close:focus {
+    color: #999;
+    text-decoration: none;
+    cursor: pointer;
+}
