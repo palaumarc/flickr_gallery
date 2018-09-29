@@ -8,7 +8,12 @@ const Gallery = ({ children }) => (
 )
 
 const GalleryPhoto = ({ photo, onClick }) => (
-    <img className="gallery-photo" src={photo.previewUrl} onClick={onClick} alt='' />
+    <div onClick={onClick} className="gallery-photo-container">
+        <img className="gallery-photo" src={photo.previewUrl} alt='' />
+        <div className="overlay">
+            <div className="text">{photo.title}</div>
+        </div>
+    </div>
 )
 
 Gallery.Photo = GalleryPhoto;

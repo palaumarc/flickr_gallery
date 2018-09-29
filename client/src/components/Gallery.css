@@ -4,8 +4,45 @@
     grid-gap: 5px;
 }
 
+.gallery-photo-container {
+    position: relative;
+    cursor: pointer;
+}
+
 .gallery-photo {
     width: 100%;
     height: 250px;
     object-fit: cover;
 }
+
+.overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: .5s ease;
+    background-color: rgb(173, 173, 173, 0.7);
+  }
+  
+  .overlay:hover {
+    opacity: 1;
+  }
+  
+  .text {
+    color: white;
+    font-size: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    text-align: center;
+    width: 80%;
+  }
