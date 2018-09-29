@@ -1,15 +1,21 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 
 import Spin from './Spin';
 import Gallery from './Gallery';
+import PhotoDetail from './PhotoDetail';
 import { fetchPhotos } from '../services/ApiCalls';
 
 class GalleryContainer extends Component {
 
     state = {
         isLoading: false,
-        photos: []
+        photos: [],
+        selectedPhoto: null
     }
+
+    onClickPhoto = selectedPhoto => this.setState({...this.state, selectedPhoto});
+    
+    onClosePhotoDetail = () => this.setState({...this.state, selectedPhoto: null})
 
     async componentDidMount() {
         this.setState({...this.state, isLoading: true});
@@ -23,7 +29,15 @@ class GalleryContainer extends Component {
             return <Spin />;
         }
 
-        return <Gallery photos={this.state.photos} />;
+        const photoDetail = (this.state.selectedPhoto) ?
+        <PhotoDetail photo={this.state.selectedPhoto} onClose={this.onClosePhotoDetail}/> : null;
+
+        return (
+            <Fragment>
+                <Gallery photos={this.state.photos} />
+                {photoDetail}
+            </Fragment>
+        );
     }
 }
 
