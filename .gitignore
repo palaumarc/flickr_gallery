@@ -10,6 +10,9 @@ client/coverage
 # production
 client/build
 
+# config
+server/config.js
+
 # misc
 .DS_Store
 
