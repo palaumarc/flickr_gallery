@@ -1,7 +1,9 @@
 import React from 'react';
 
-export default Gallery = ({ photos }) => (
+const Gallery = ({ photos }) => (
     <div>
         {photos.map(photo => photo.title)}
     </div>
 )
+
+export default Gallery;
