@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 
 import Spin from './Spin';
-
+import Gallery from './Gallery';
+import { fetchPhotos } from '../services/ApiCalls';
 
 class GalleryContainer extends Component {
 
@@ -10,7 +11,7 @@ class GalleryContainer extends Component {
         photos: []
     }
 
-    componentDidMount() {
+    async componentDidMount() {
         this.setState({...this.state, isLoading: true});
         const photos = await fetchPhotos();
         this.setState({...this.state, isLoading: false, photos});
