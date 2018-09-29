@@ -1,16 +1,14 @@
 import React from 'react';
+import './Gallery.css';
 
 const Gallery = ({ children }) => (
-    <div>
+    <div className="gallery">
         {children}
     </div>
 )
 
 const GalleryPhoto = ({ photo, onClick }) => (
-    <div onClick={onClick}>
-        <h3>{photo.title} -- {photo.username}</h3>
-        <p>{photo.description}</p>
-    </div>
+    <img className="gallery-photo" src={photo.previewUrl} onClick={onClick} alt='' />
 )
 
 Gallery.Photo = GalleryPhoto;
