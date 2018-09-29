@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from 'react';
-import './App.css';
 import GalleryContainer from './GalleryContainer';
-import PhotoDetailContainer from './PhotoDetailContainer';
+import PhotoDetail from './PhotoDetail';
 
 class App extends Component {
 
@@ -15,13 +14,13 @@ class App extends Component {
 
   render() {
 
-    const photoDetailContainer = (this.state.selectedPhoto) ?
-      <PhotoDetailContainer photo={this.state.selectedPhoto} onClose={this.onClosePhotoDetail}/> : null;
+    const photoDetail = (this.state.selectedPhoto) ?
+      <PhotoDetail photo={this.state.selectedPhoto} onClose={this.onClosePhotoDetail}/> : null;
 
     return (
       <Fragment>
         <GalleryContainer onClickPhoto={this.onClickPhoto}/>
-        {photoDetailContainer}
+        {photoDetail}
       </Fragment>
     );
   }

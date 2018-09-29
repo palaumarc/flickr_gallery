@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import Spin from './Spin';
 
+
 class GalleryContainer extends Component {
 
     state = {
