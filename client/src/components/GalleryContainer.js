@@ -10,13 +10,23 @@ class GalleryContainer extends Component {
 
     state = {
         photos: [],
-        selectedPhoto: null,
-        currentPage: 0
+        currentPage: 0,
+        selectedPhotoIndex: null
     }
 
-    onClickPhoto = selectedPhoto => this.setState({...this.state, selectedPhoto});
+    onClickPhoto = selectedPhotoIndex => this.setState({...this.state, selectedPhotoIndex});
     
-    onClosePhotoDetail = () => this.setState({...this.state, selectedPhoto: null})
+    onClosePhotoDetail = () => this.setState({...this.state, selectedPhotoIndex: null});
+
+    selectNextPhoto = () => {
+        const newIndex = this.state.selectedPhotoIndex + 1;
+        this.setState({...this.state, selectedPhotoIndex: newIndex});
+    }
+
+    selectPreviousPhoto = () => {
+        const newIndex = this.state.selectedPhotoIndex - 1;
+        this.setState({...this.state, selectedPhotoIndex: newIndex});
+    }
 
     loadFunc = async () => {
         const pageToLoad = this.state.currentPage + 1;
@@ -30,7 +40,7 @@ class GalleryContainer extends Component {
 
     render() {
 
-        const { selectedPhoto, photos } = this.state;
+        const { photos, selectedPhotoIndex } = this.state;
 
         return (
             <Fragment>
@@ -41,10 +51,17 @@ class GalleryContainer extends Component {
                     loader={<Spin key='infinite-scroll-loader-id'/>}
                 >
                     <Gallery>
-                        {photos.map((photo, index) => <Gallery.Photo key={`${photo.id}-${index}`} photo={photo} onClick={() => this.onClickPhoto(photo)}/>)}
+                        {photos.map((photo, index) => <Gallery.Photo key={`${photo.id}-${index}`} photo={photo} onClick={() => this.onClickPhoto(index)}/>)}
                     </Gallery>
                 </InfiniteScroll>
-                {selectedPhoto ? <PhotoDetail photo={selectedPhoto} onClose={this.onClosePhotoDetail}/> : null}
+                {selectedPhotoIndex !== null ? 
+                <PhotoDetail 
+                    photo={photos[selectedPhotoIndex]} 
+                    onClose={this.onClosePhotoDetail}
+                    previousControl={selectedPhotoIndex > 0 ? <PhotoDetail.PreviousPhotoArrow onClick={this.selectPreviousPhoto}/> : null}
+                    nextControl={selectedPhotoIndex < photos.length - 1 ? <PhotoDetail.NextPhotoArrow onClick={this.selectNextPhoto}/> : null}
+                /> 
+                : null}
             </Fragment>
         );
     }
