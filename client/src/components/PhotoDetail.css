@@ -1,4 +1,4 @@
-/* The Modal (background) */
+/* Modal background */
 .photo-detail {
     position: fixed;
     z-index: 1;
@@ -10,57 +10,80 @@
     background-color: rgba(70, 70, 70, 0.7);
 }
 
-/* Modal Content */
+/* Modal content (layout) */
 .photo-detail-content {
-    margin: auto;
-    margin-top: 3%;
-    padding: 0;
-    width: 90%;
-    height: 90%;
     display: grid;
-    grid-template-rows: 70% 10% 20%;
+    padding-left: 5px;
+    padding-right: 5px;
+    height: 100%;
+    grid-template-rows: 30px auto 20% 10%;
     grid-template-columns: 100%;
     grid-gap: 10px;
     justify-items: center;
     align-items: start;
 }
 
+/* Modal image */
 .photo-detail-content img {
     max-width: 100%;
     max-height: 100%;
     align-self: center;
-    /* object-fit: scale-down; */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.photo-detail-content div {
+/* Photo info container */
+.photo-detail-content-info-container {
     color: white;
+    padding: 10px;
+    width: 90%;
+    max-width: 800px;
+    height: 100%;
+    overflow-y: auto;
 }
 
-.photo-detail-content-username {
-    cursor: pointer;
+.photo-detail-content-info-container p {
+    font-weight: lighter;
+    word-break: break-word;
 }
-.photo-detail-content-username:hover {
+
+.photo-detail-content-info-username {
+    font-style: italic;
+    cursor: pointer;
+    word-break: break-word;
+}
+
+.photo-detail-content-info-username:hover {
     color: rgb(212, 212, 212);
 }
 
-/* The Close Button */
+.photo-detail-content-info-title {
+    font-weight: bold;
+    word-break: break-word;
+}
+
+/* Modal Close Button */
 .photo-detail-close {
     color: white;
-    position: absolute;
-    top: 10px;
-    right: 25px;
     font-size: 35px;
     font-weight: bold;
     cursor: pointer;
     z-index: 2;
+    justify-self: end;
 }
 
-.photo-detail-next-previous-container {
+.photo-detail-close:hover,
+.photo-detail-close:focus {
+    color: rgb(212, 212, 212);
+    text-decoration: none;
+}
+
+/* Modal next and previous photo control */
+.photo-detail-content-next-previous-container {
     width: 100px;
+    align-self: center;
 }
 
-/* The Close Button */
-.photo-detail-next, .photo-detail-previous {
+.photo-detail-content-next, .photo-detail-content-previous {
     color: white;
     font-size: 20px;
     font-weight: bold;
@@ -68,20 +91,14 @@
     z-index: 2;
 }
 
-.photo-detail-next {
+.photo-detail-content-next {
     float: right;
 }
-.photo-detail-previous {
+
+.photo-detail-content-previous {
     float: left;
 }
 
-.photo-detail-next:hover, .photo-detail-previous:hover { 
+.photo-detail-content-next:hover, .photo-detail-content-previous:hover { 
     color: rgb(212, 212, 212);
-}
-
-.photo-detail-close:hover,
-.photo-detail-close:focus {
-    /* color: #999; */
-    color: rgb(212, 212, 212);
-    text-decoration: none;
 }
