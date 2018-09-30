@@ -1,7 +1,7 @@
 import React from 'react';
 import './PhotoDetail.css'
 
-const PhotoDetail = ({ photo, onClose, onClickNext, onClickPrevious, hasNext, hasPrevious }) => (
+const PhotoDetail = ({ photo, onClose, previousControl, nextControl }) => (
     <div className="photo-detail">
         <div className="photo-detail-content">
             <div className="photo-detail-close" onClick={onClose}>&times;</div>
@@ -11,11 +11,19 @@ const PhotoDetail = ({ photo, onClose, onClickNext, onClickPrevious, hasNext, ha
                 <p>{photo.description}</p>
             </div>
             <div className="photo-detail-content-next-previous-container">
-                {hasPrevious ? <div className="photo-detail-content-previous" onClick={onClickPrevious}>&lt;</div> : null}
-                {hasNext ? <div className="photo-detail-content-next" onClick={onClickNext}>&gt;</div> : null}
+                {previousControl}
+                {nextControl}
             </div>
         </div>
     </div>
+);
+
+PhotoDetail.PreviousPhotoArrow = ({onClick}) => (
+    <div className="photo-detail-content-previous" onClick={onClick}>&lt;</div>
+);
+
+PhotoDetail.NextPhotoArrow = ({onClick}) => (
+    <div className="photo-detail-content-next" onClick={onClick}>&gt;</div>
 );
 
 export default PhotoDetail;

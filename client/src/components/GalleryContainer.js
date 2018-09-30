@@ -17,7 +17,7 @@ class GalleryContainer extends Component {
     
     onClosePhotoDetail = () => this.setState({...this.state, selectedPhotoIndex: null});
 
-    selectedNextPhoto = () => {
+    selectNextPhoto = () => {
         const newIndex = this.state.selectedPhotoIndex + 1;
         this.setState({...this.state, selectedPhotoIndex: newIndex});
     }
@@ -50,10 +50,8 @@ class GalleryContainer extends Component {
                 <PhotoDetail 
                     photo={photos[selectedPhotoIndex]} 
                     onClose={this.onClosePhotoDetail}
-                    onClickNext={this.selectedNextPhoto}
-                    hasNext={selectedPhotoIndex < photos.length - 1}
-                    onClickPrevious={this.selectPreviousPhoto}
-                    hasPrevious={selectedPhotoIndex > 0}
+                    previousControl={selectedPhotoIndex > 0 ? <PhotoDetail.PreviousPhotoArrow onClick={this.selectPreviousPhoto}/> : null}
+                    nextControl={selectedPhotoIndex < photos.length - 1 ? <PhotoDetail.NextPhotoArrow onClick={this.selectNextPhoto}/> : null}
                 /> 
                 : null}
             </Fragment>
