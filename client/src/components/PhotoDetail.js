@@ -7,7 +7,7 @@ const PhotoDetail = ({ photo, onClose }) => (
         <div className="photo-detail-content">
             <img src={photo.fullSizeUrl || photo.previewUrl} alt={photo.title}/>
             <div>
-                <span>{photo.title}</span> - <span>{photo.username}</span>
+                <span>{photo.title}</span> - <span className="photo-detail-content-username" onClick={() => window.open(photo.flickrRedirectUrl)}>{photo.username}</span>
                 <p>{photo.description}</p>
             </div>
         </div>

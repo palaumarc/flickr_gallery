@@ -34,6 +34,13 @@
     color: white;
 }
 
+.photo-detail-content-username {
+    cursor: pointer;
+}
+.photo-detail-content-username:hover {
+    color: rgb(212, 212, 212);
+}
+
 /* The Close Button */
 .photo-detail-close {
     color: white;
@@ -48,6 +55,7 @@
 
 .photo-detail-close:hover,
 .photo-detail-close:focus {
-    color: #999;
+    /* color: #999; */
+    color: rgb(212, 212, 212);
     text-decoration: none;
 }
