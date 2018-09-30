@@ -3,6 +3,7 @@ import React, { Component, Fragment } from 'react';
 import Spin from './Spin';
 import Gallery from './Gallery';
 import PhotoDetail from './PhotoDetail';
+import Lightbox from './Lightbox';
 import { fetchPhotos } from '../services/ApiCalls';
 
 class GalleryContainer extends Component {
@@ -46,13 +47,15 @@ class GalleryContainer extends Component {
                 <Gallery>
                     {photos.map((photo, index) => <Gallery.Photo key={photo.id} photo={photo} onClick={() => this.onClickPhoto(index)}/>)}
                 </Gallery>
-                {selectedPhotoIndex !== null ? 
-                <PhotoDetail 
-                    photo={photos[selectedPhotoIndex]} 
-                    onClose={this.onClosePhotoDetail}
-                    previousControl={selectedPhotoIndex > 0 ? <PhotoDetail.PreviousPhotoArrow onClick={this.selectPreviousPhoto}/> : null}
-                    nextControl={selectedPhotoIndex < photos.length - 1 ? <PhotoDetail.NextPhotoArrow onClick={this.selectNextPhoto}/> : null}
-                /> 
+                {selectedPhotoIndex !== null ?
+                <Lightbox onClose={this.onClosePhotoDetail}>
+                    <PhotoDetail 
+                        photo={photos[selectedPhotoIndex]} 
+                        onClose={this.onClosePhotoDetail}
+                        previousControl={selectedPhotoIndex > 0 ? <PhotoDetail.PreviousPhotoArrow onClick={this.selectPreviousPhoto}/> : null}
+                        nextControl={selectedPhotoIndex < photos.length - 1 ? <PhotoDetail.NextPhotoArrow onClick={this.selectNextPhoto}/> : null}
+                    /> 
+                </Lightbox> 
                 : null}
             </Fragment>
         );
