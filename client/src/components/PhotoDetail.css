@@ -4,7 +4,7 @@
     padding-left: 5px;
     padding-right: 5px;
     height: 100%;
-    grid-template-rows: 70% 20% 10%;
+    grid-template-rows: 70% 30%;
     grid-template-columns: 100%;
     grid-gap: 10px;
     justify-items: center;
@@ -47,30 +47,4 @@
 .photo-detail-content-info-title {
     font-weight: bold;
     word-break: break-word;
-}
-
-/* Modal next and previous photo control */
-.photo-detail-content-next-previous-container {
-    width: 100px;
-    align-self: center;
-}
-
-.photo-detail-content-next, .photo-detail-content-previous {
-    color: white;
-    font-size: 20px;
-    font-weight: bold;
-    cursor: pointer;
-    z-index: 2;
-}
-
-.photo-detail-content-next {
-    float: right;
-}
-
-.photo-detail-content-previous {
-    float: left;
-}
-
-.photo-detail-content-next:hover, .photo-detail-content-previous:hover { 
-    color: rgb(212, 212, 212);
 }

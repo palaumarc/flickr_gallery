@@ -5,6 +5,7 @@ import Gallery from './Gallery';
 import PhotoDetail from './PhotoDetail';
 import Lightbox from './Lightbox';
 import { fetchPhotos } from '../services/ApiCalls';
+import Carousel from './Carousel';
 
 class GalleryContainer extends Component {
 
@@ -17,16 +18,6 @@ class GalleryContainer extends Component {
     onClickPhoto = selectedPhotoIndex => this.setState({...this.state, selectedPhotoIndex});
     
     onClosePhotoDetail = () => this.setState({...this.state, selectedPhotoIndex: null});
-
-    selectNextPhoto = () => {
-        const newIndex = this.state.selectedPhotoIndex + 1;
-        this.setState({...this.state, selectedPhotoIndex: newIndex});
-    }
-
-    selectPreviousPhoto = () => {
-        const newIndex = this.state.selectedPhotoIndex - 1;
-        this.setState({...this.state, selectedPhotoIndex: newIndex});
-    }
 
     async componentDidMount() {
         this.setState({...this.state, isLoading: true});
@@ -49,12 +40,9 @@ class GalleryContainer extends Component {
                 </Gallery>
                 {selectedPhotoIndex !== null ?
                 <Lightbox onClose={this.onClosePhotoDetail}>
-                    <PhotoDetail 
-                        photo={photos[selectedPhotoIndex]} 
-                        onClose={this.onClosePhotoDetail}
-                        previousControl={selectedPhotoIndex > 0 ? <PhotoDetail.PreviousPhotoArrow onClick={this.selectPreviousPhoto}/> : null}
-                        nextControl={selectedPhotoIndex < photos.length - 1 ? <PhotoDetail.NextPhotoArrow onClick={this.selectNextPhoto}/> : null}
-                    /> 
+                    <Carousel defaultIndex={selectedPhotoIndex}>
+                        {photos.map((photo) => <PhotoDetail key={photo.id} photo={photo} />)}
+                    </Carousel>
                 </Lightbox> 
                 : null}
             </Fragment>
