@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import InfiniteScroll from 'react-infinite-scroller';
 
 import Spin from './Spin';
 import Gallery from './Gallery';
@@ -8,34 +9,41 @@ import { fetchPhotos } from '../services/ApiCalls';
 class GalleryContainer extends Component {
 
     state = {
-        isLoading: false,
         photos: [],
-        selectedPhoto: null
+        selectedPhoto: null,
+        currentPage: 0
     }
 
     onClickPhoto = selectedPhoto => this.setState({...this.state, selectedPhoto});
     
     onClosePhotoDetail = () => this.setState({...this.state, selectedPhoto: null})
 
-    async componentDidMount() {
-        this.setState({...this.state, isLoading: true});
-        const photos = await fetchPhotos();
-        this.setState({...this.state, isLoading: false, photos});
+    loadFunc = async () => {
+        const pageToLoad = this.state.currentPage + 1;
+        const newPhotos = await fetchPhotos(pageToLoad, 15);
+        this.setState(prevState => ({
+            ...this.prevState, 
+            currentPage: pageToLoad, 
+            photos: prevState.photos.concat(newPhotos)
+        }));
     }
 
     render() {
 
-        const { selectedPhoto, isLoading, photos } = this.state;
-
-        if (isLoading) {
-            return <Spin />;
-        }
+        const { selectedPhoto, photos } = this.state;
 
         return (
             <Fragment>
-                <Gallery>
-                    {photos.map(photo => <Gallery.Photo key={photo.id} photo={photo} onClick={() => this.onClickPhoto(photo)}/>)}
-                </Gallery>
+                <InfiniteScroll
+                    pageStart={0}
+                    loadMore={this.loadFunc}
+                    hasMore={true}
+                    loader={<Spin key='infinite-scroll-loader-id'/>}
+                >
+                    <Gallery>
+                        {photos.map((photo, index) => <Gallery.Photo key={`${photo.id}-${index}`} photo={photo} onClick={() => this.onClickPhoto(photo)}/>)}
+                    </Gallery>
+                </InfiniteScroll>
                 {selectedPhoto ? <PhotoDetail photo={selectedPhoto} onClose={this.onClosePhotoDetail}/> : null}
             </Fragment>
         );
