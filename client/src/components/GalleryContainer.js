@@ -1,10 +1,11 @@
 import React, { Component, Fragment } from 'react';
-import InfiniteScroll from 'react-infinite-scroller';
+import InfiniteScroll from './InfiniteScroll';
 
-import Spin from './Spin';
 import Gallery from './Gallery';
 import PhotoDetail from './PhotoDetail';
 import { fetchPhotos } from '../services/ApiCalls';
+
+const PHOTOS_PER_PAGE = 15;
 
 class GalleryContainer extends Component {
 
@@ -30,7 +31,7 @@ class GalleryContainer extends Component {
 
     loadFunc = async () => {
         const pageToLoad = this.state.currentPage + 1;
-        const newPhotos = await fetchPhotos(pageToLoad, 15);
+        const newPhotos = await fetchPhotos(pageToLoad, PHOTOS_PER_PAGE);
         this.setState(prevState => ({
             ...this.prevState, 
             currentPage: pageToLoad, 
@@ -45,10 +46,8 @@ class GalleryContainer extends Component {
         return (
             <Fragment>
                 <InfiniteScroll
-                    pageStart={0}
                     loadMore={this.loadFunc}
                     hasMore={true}
-                    loader={<Spin key='infinite-scroll-loader-id'/>}
                 >
                     <Gallery>
                         {photos.map((photo, index) => <Gallery.Photo key={`${photo.id}-${index}`} photo={photo} onClick={() => this.onClickPhoto(index)}/>)}

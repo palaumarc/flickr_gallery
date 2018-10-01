@@ -1,3 +1,6 @@
 import React from 'react';
+import './Spin.css';
 
-export default () => <div>This is a loader</div>;
+const Spin = () => <div className='spin' />
+
+export default Spin;
