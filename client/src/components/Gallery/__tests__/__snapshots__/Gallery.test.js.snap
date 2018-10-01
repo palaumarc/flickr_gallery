@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component - Gallery Snapshot with multiple children 1`] = `
+<div
+  className="gallery"
+>
+  <div>
+    First Gallery Child
+  </div>
+  <div>
+    Second Gallery Child
+  </div>
+</div>
+`;
+
+exports[`Component - Gallery.Photo Snapshot 1`] = `
+<div
+  className="gallery-photo-container"
+  onClick={[Function]}
+>
+  <img
+    alt=""
+    className="gallery-photo"
+    src="previewUrl"
+  />
+  <div
+    className="overlay"
+  >
+    <div
+      className="text"
+    >
+      title
+    </div>
+  </div>
+</div>
+`;

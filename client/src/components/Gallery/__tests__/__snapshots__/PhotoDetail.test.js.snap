@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Snapshot with a photo object with fullSizeUrl 1`] = `
+<div
+  className="photo-detail-content"
+>
+  <img
+    alt="title"
+    src="fullSizeUrl"
+  />
+  <div
+    className="photo-detail-content-info-container"
+  >
+    <span
+      className="photo-detail-content-info-title"
+    >
+      title
+    </span>
+    -
+    <span
+      className="photo-detail-content-info-username"
+      onClick={[Function]}
+    >
+      username
+    </span>
+    <br />
+    <span
+      className="photo-detail-content-info-description"
+    >
+      description
+    </span>
+  </div>
+</div>
+`;
+
+exports[`Snapshot with a photo object without fullSizeUrl 1`] = `
+<div
+  className="photo-detail-content"
+>
+  <img
+    alt="title"
+    src="previewUrl"
+  />
+  <div
+    className="photo-detail-content-info-container"
+  >
+    <span
+      className="photo-detail-content-info-title"
+    >
+      title
+    </span>
+    -
+    <span
+      className="photo-detail-content-info-username"
+      onClick={[Function]}
+    >
+      username
+    </span>
+    <br />
+    <span
+      className="photo-detail-content-info-description"
+    >
+      description
+    </span>
+  </div>
+</div>
+`;
