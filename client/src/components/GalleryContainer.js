@@ -17,9 +17,9 @@ class GalleryContainer extends Component {
         selectedPhotoIndex: null
     }
 
-    onClickPhoto = selectedPhotoIndex => this.setState({...this.state, selectedPhotoIndex});
+    onClickPhoto = selectedPhotoIndex => this.setState(prevState => ({...prevState, selectedPhotoIndex}));
     
-    onClosePhotoDetail = () => this.setState({...this.state, selectedPhotoIndex: null});
+    onClosePhotoDetail = () => this.setState(prevState => ({...prevState, selectedPhotoIndex: null}));
 
     loadPhotos = async () => {
         const pageToLoad = this.state.currentPage + 1;

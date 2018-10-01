@@ -30,9 +30,9 @@ class InfiniteScroll extends Component {
   };
 
   execLoadMore = async () => {
-      this.setState({isLoading: true})
+      this.setState(prevState => ({...prevState, isLoading: true}));
       await this.props.loadMore()
-      this.setState({isLoading: false})
+      this.setState(prevState => ({...prevState, isLoading: false}));
 
       if (!this.props.hasMore) {
           document.removeEventListener('scroll', this.onScroll);

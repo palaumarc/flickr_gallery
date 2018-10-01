@@ -19,13 +19,11 @@ class Carousel extends Component {
     }
 
     selectNext = () => {
-        const newIndex = this.state.selectedIndex + 1;
-        this.setState({...this.state, selectedIndex: newIndex});
+        this.setState(prevState => ({...prevState, selectedIndex: prevState.selectedIndex + 1}));
     }
 
     selectPrevious = () => {
-        const newIndex = this.state.selectedIndex - 1;
-        this.setState({...this.state, selectedIndex: newIndex});
+        this.setState(prevState => ({...prevState, selectedIndex: prevState.selectedIndex - 1}));
     }
 
     render() {
