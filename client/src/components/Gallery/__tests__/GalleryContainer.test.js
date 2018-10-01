@@ -93,20 +93,3 @@ describe('Component is rendered.', () => {
     })
 
 })
-
-
-test.skip('The div parent element is clicked. OnClick prop should have been called one time', () => {
-    const onClick = jest.fn();
-    const tree = ReactTestUtils.renderIntoDocument(<Wrapper><Gallery.Photo photo={photoMock} onClick={onClick} /></Wrapper>);
-    //Get all div components
-    const divComponents = ReactTestUtils.scryRenderedDOMComponentsWithTag(tree, "div");
-
-    //Get first div, which corresponds to the parent div
-    const parentDiv = divComponents[0];
-
-    //Execute onClick
-    ReactTestUtils.Simulate.click(parentDiv);
-
-    //Assert
-    expect(onClick).toHaveBeenCalledTimes(1);
-})
