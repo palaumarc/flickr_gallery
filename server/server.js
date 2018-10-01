@@ -35,7 +35,8 @@ app.get('/api/photos', (req, res) => {
                     username: photo.ownername
                 }
             })
-            res.status(200).json(photos);
+            const hasMore = data.photos.page < data.photos.pages;
+            res.status(200).json({photos, hasMore});
         })
 });
 

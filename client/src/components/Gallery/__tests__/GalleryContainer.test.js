@@ -15,10 +15,13 @@ jest.mock('../../utils/InfiniteScroll');
 jest.mock('../../utils/Lightbox');
 jest.mock('../../../services/ApiCalls');
 
-const photosMock = [
-    { id: 1 },
-    { id: 2}
-];
+const fetchPhotosResponse = {
+    photos: [
+        { id: 1 },
+        { id: 2 }
+    ],
+    hasMore: true
+};
 
 describe('Component is rendered.', () => {
 
@@ -34,14 +37,24 @@ describe('Component is rendered.', () => {
     describe('InfiniteScroll triggers loadMore().', () => {
 
         test('Snapshot', async () => {
-            fetchPhotos.mockReturnValue(Promise.resolve(photosMock));
+            fetchPhotos.mockReturnValue(Promise.resolve(fetchPhotosResponse));
             const tree = renderer.create(<GalleryContainer />);
             await tree.root.findByType(InfiniteScroll).props.loadMore();
             expect(tree.toJSON()).toMatchSnapshot();
         })
 
+        test('The response has attribut "hasMore" to false. InfiniteScroll "hasMore" prop should be false.', async () => {
+            const fetchPhotosResponseHasMoreFalse = {...fetchPhotosResponse, hasMore: false};
+            fetchPhotos.mockReturnValue(Promise.resolve(fetchPhotosResponseHasMoreFalse));
+            const tree = renderer.create(<GalleryContainer />);
+            const infiniteScroll = tree.root.findByType(InfiniteScroll);
+            expect(infiniteScroll.props.hasMore).toBe(true)
+            await infiniteScroll.props.loadMore();
+            expect(infiniteScroll.props.hasMore).toBe(false)
+        })
+
         test('FetchPhotos should have been called one time with expected parameters', async () => {
-            fetchPhotos.mockReturnValue(Promise.resolve(photosMock));
+            fetchPhotos.mockReturnValue(Promise.resolve(fetchPhotosResponse));
             const tree = renderer.create(<GalleryContainer />);
             await tree.root.findByType(InfiniteScroll).props.loadMore();
 
@@ -53,7 +66,7 @@ describe('Component is rendered.', () => {
         })
 
         test('InfiniteScroll trigger loadMore() for second time. FetchPhotos should have been called two times with expected parameters', async () => {
-            fetchPhotos.mockReturnValue(Promise.resolve(photosMock));
+            fetchPhotos.mockReturnValue(Promise.resolve(fetchPhotosResponse));
             const tree = renderer.create(<GalleryContainer />);
             await tree.root.findByType(InfiniteScroll).props.loadMore();
             await tree.root.findByType(InfiniteScroll).props.loadMore();
@@ -68,7 +81,7 @@ describe('Component is rendered.', () => {
         describe('Gallery first photo is clicked.', () => {
 
             test('Snapshot', async () => {
-                fetchPhotos.mockReturnValue(Promise.resolve(photosMock));
+                fetchPhotos.mockReturnValue(Promise.resolve(fetchPhotosResponse));
                 const tree = renderer.create(<GalleryContainer />);
                 await tree.root.findByType(InfiniteScroll).props.loadMore();
                 tree.root.findAllByType(Gallery.Photo)[0].props.onClick();
@@ -78,7 +91,7 @@ describe('Component is rendered.', () => {
             describe('Lightbox is close button is clicked.', () => {
 
                 test('Snapshot', async () => {
-                    fetchPhotos.mockReturnValue(Promise.resolve(photosMock));
+                    fetchPhotos.mockReturnValue(Promise.resolve(fetchPhotosResponse));
                     const tree = renderer.create(<GalleryContainer />);
                     await tree.root.findByType(InfiniteScroll).props.loadMore();
                     tree.root.findAllByType(Gallery.Photo)[0].props.onClick();

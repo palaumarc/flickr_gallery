@@ -13,6 +13,7 @@ class GalleryContainer extends Component {
 
     state = {
         photos: [],
+        hasMorePhotos: true,
         currentPage: 0,
         selectedPhotoIndex: null
     }
@@ -23,21 +24,22 @@ class GalleryContainer extends Component {
 
     loadPhotos = async () => {
         const pageToLoad = this.state.currentPage + 1;
-        const newPhotos = await fetchPhotos(pageToLoad, PHOTOS_PER_PAGE);
+        const {photos, hasMore} = await fetchPhotos(pageToLoad, PHOTOS_PER_PAGE);
         this.setState(prevState => ({
             ...this.prevState, 
             currentPage: pageToLoad, 
-            photos: prevState.photos.concat(newPhotos)
+            photos: prevState.photos.concat(photos),
+            hasMorePhotos: hasMore
         }));
     }
 
     render() {
 
-        const { photos, selectedPhotoIndex } = this.state;
+        const { photos, selectedPhotoIndex, hasMorePhotos } = this.state;
 
         return (
             <Fragment>
-                <InfiniteScroll loadMore={this.loadPhotos} hasMore={true}>
+                <InfiniteScroll loadMore={this.loadPhotos} hasMore={hasMorePhotos}>
                     <Gallery>
                         {photos.map((photo, index) => <Gallery.Photo key={`${photo.id}-${index}`} photo={photo} onClick={() => this.onClickPhoto(index)}/>)}
                     </Gallery>
