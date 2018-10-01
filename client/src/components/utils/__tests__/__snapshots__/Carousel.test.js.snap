@@ -1,0 +1,109 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component is rendered four children and with prop startIndex 2. Next button is clicked. Snapshot 1`] = `
+<div
+  className="carousel"
+>
+  <div
+    className="carousel-content"
+  >
+    <div>
+      Carousel child 3
+    </div>
+  </div>
+  <div
+    className="carousel-controls"
+  >
+    <div
+      className="carousel-controls-previous"
+      onClick={[Function]}
+    >
+      &lt;
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Component is rendered four children and with prop startIndex 2. Previous button is clicked. Snapshot 1`] = `
+<div
+  className="carousel"
+>
+  <div
+    className="carousel-content"
+  >
+    <div>
+      Carousel child 1
+    </div>
+  </div>
+  <div
+    className="carousel-controls"
+  >
+    <div
+      className="carousel-controls-previous"
+      onClick={[Function]}
+    >
+      &lt;
+    </div>
+    <div
+      className="carousel-controls-next"
+      onClick={[Function]}
+    >
+      &gt;
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Component is rendered four children and with prop startIndex 2. Snapshot 1`] = `
+<div
+  className="carousel"
+>
+  <div
+    className="carousel-content"
+  >
+    <div>
+      Carousel child 2
+    </div>
+  </div>
+  <div
+    className="carousel-controls"
+  >
+    <div
+      className="carousel-controls-previous"
+      onClick={[Function]}
+    >
+      &lt;
+    </div>
+    <div
+      className="carousel-controls-next"
+      onClick={[Function]}
+    >
+      &gt;
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Component is rendered with four children and without prop startIndex Snapshot 1`] = `
+<div
+  className="carousel"
+>
+  <div
+    className="carousel-content"
+  >
+    <div>
+      Carousel child 0
+    </div>
+  </div>
+  <div
+    className="carousel-controls"
+  >
+    <div
+      className="carousel-controls-next"
+      onClick={[Function]}
+    >
+      &gt;
+    </div>
+  </div>
+</div>
+`;
