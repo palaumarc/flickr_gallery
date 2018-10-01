@@ -21,16 +21,6 @@ class GalleryContainer extends Component {
     
     onClosePhotoDetail = () => this.setState({...this.state, selectedPhotoIndex: null});
 
-    selectNextPhoto = () => {
-        const newIndex = this.state.selectedPhotoIndex + 1;
-        this.setState({...this.state, selectedPhotoIndex: newIndex});
-    }
-
-    selectPreviousPhoto = () => {
-        const newIndex = this.state.selectedPhotoIndex - 1;
-        this.setState({...this.state, selectedPhotoIndex: newIndex});
-    }
-
     loadPhotos = async () => {
         const pageToLoad = this.state.currentPage + 1;
         const newPhotos = await fetchPhotos(pageToLoad, PHOTOS_PER_PAGE);
