@@ -1,10 +1,17 @@
 import React, { Component } from 'react';
 import './Carousel.css'
 
+const DEFAULT_INDEX = 0;
+
 class Carousel extends Component {
 
-    state = {
-        selectedIndex: (this.props.defaultIndex === undefined) ? 0 : this.props.defaultIndex
+    getStartIndex = () => {
+        const { children, startIndex } = this.props;
+        if (startIndex === undefined || startIndex < 0 || startIndex >= React.Children.count(children)) {
+            return DEFAULT_INDEX;
+        }
+
+        return startIndex;
     }
 
     selectNext = () => {
@@ -17,15 +24,28 @@ class Carousel extends Component {
         this.setState({...this.state, selectedIndex: newIndex});
     }
 
+    state = {
+        selectedIndex: this.getStartIndex()
+    }
+
     render() {
+
+        const reactChildrenAsArray = React.Children.toArray(this.props.children);
+
+        const previousControl = (this.state.selectedIndex > 0) ?
+            <div className="carousel-controls-previous" onClick={this.selectPrevious}>&lt;</div> : null;
+
+        const nextControl = (this.state.selectedIndex < reactChildrenAsArray.length - 1) ?
+            <div className="carousel-controls-next" onClick={this.selectNext}>&gt;</div> : null;
+
         return (
             <div className="carousel">
                 <div className="carousel-content">
-                    {React.Children.toArray(this.props.children)[this.state.selectedIndex]}
+                    {reactChildrenAsArray[this.state.selectedIndex]}
                 </div>
                 <div className="carousel-controls">
-                    <div className="carousel-controls-previous" onClick={this.selectPrevious}>&lt;</div>
-                    <div className="carousel-controls-next" onClick={this.selectNext}>&gt;</div>
+                    {previousControl}
+                    {nextControl}
                 </div>
             </div>
         )
