@@ -22,14 +22,13 @@
 /* Photo info container */
 .photo-detail-content-info-container {
     color: white;
-    padding: 10px;
     width: 90%;
     max-width: 800px;
     height: 100%;
     overflow-y: auto;
 }
 
-.photo-detail-content-info-container p {
+.photo-detail-content-info-description {
     font-weight: lighter;
     word-break: break-word;
 }
