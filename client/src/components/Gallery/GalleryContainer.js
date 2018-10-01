@@ -43,7 +43,7 @@ class GalleryContainer extends Component {
                     </Gallery>
                 </InfiniteScroll>
                 {selectedPhotoIndex !== null ?
-                <Lightbox onClose={this.onClosePhotoDetail}>
+                <Lightbox onClickCloseButton={this.onClosePhotoDetail}>
                     <Carousel startIndex={selectedPhotoIndex}>
                         {photos.map((photo, index) => <PhotoDetail key={`${photo.id}-${index}`} photo={photo} />)}
                     </Carousel>

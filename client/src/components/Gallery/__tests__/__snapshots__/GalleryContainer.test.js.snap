@@ -1,0 +1,112 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component is rendered. InfiniteScroll triggers loadMore(). Gallery first photo is clicked. Lightbox is close button is clicked. Snapshot 1`] = `
+<infinite-scroll-mock
+  hasMore={true}
+  loadMore={[Function]}
+>
+  <gallery-mock>
+    <gallery-photo
+      onClick={[Function]}
+      photo={
+        Object {
+          "id": 1,
+        }
+      }
+    />
+    <gallery-photo
+      onClick={[Function]}
+      photo={
+        Object {
+          "id": 2,
+        }
+      }
+    />
+  </gallery-mock>
+</infinite-scroll-mock>
+`;
+
+exports[`Component is rendered. InfiniteScroll triggers loadMore(). Gallery first photo is clicked. Snapshot 1`] = `
+Array [
+  <infinite-scroll-mock
+    hasMore={true}
+    loadMore={[Function]}
+>
+    <gallery-mock>
+        <gallery-photo
+            onClick={[Function]}
+            photo={
+                Object {
+                    "id": 1,
+                  }
+            }
+        />
+        <gallery-photo
+            onClick={[Function]}
+            photo={
+                Object {
+                    "id": 2,
+                  }
+            }
+        />
+    </gallery-mock>
+</infinite-scroll-mock>,
+  <lightbox-mock
+    onClickCloseButton={[Function]}
+>
+    <carousel-mock
+        startIndex={0}
+    >
+        <photo-detail-mock
+            photo={
+                Object {
+                    "id": 1,
+                  }
+            }
+        />
+        <photo-detail-mock
+            photo={
+                Object {
+                    "id": 2,
+                  }
+            }
+        />
+    </carousel-mock>
+</lightbox-mock>,
+]
+`;
+
+exports[`Component is rendered. InfiniteScroll triggers loadMore(). Snapshot 1`] = `
+<infinite-scroll-mock
+  hasMore={true}
+  loadMore={[Function]}
+>
+  <gallery-mock>
+    <gallery-photo
+      onClick={[Function]}
+      photo={
+        Object {
+          "id": 1,
+        }
+      }
+    />
+    <gallery-photo
+      onClick={[Function]}
+      photo={
+        Object {
+          "id": 2,
+        }
+      }
+    />
+  </gallery-mock>
+</infinite-scroll-mock>
+`;
+
+exports[`Component is rendered. Snapshot 1`] = `
+<infinite-scroll-mock
+  hasMore={true}
+  loadMore={[Function]}
+>
+  <gallery-mock />
+</infinite-scroll-mock>
+`;
