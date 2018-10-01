@@ -1,6 +1,5 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import ReactTestUtils from "react-dom/test-utils";
 
 import GalleryContainer from "../GalleryContainer";
 import Gallery from "../Gallery";

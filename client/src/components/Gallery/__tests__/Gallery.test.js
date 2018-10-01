@@ -1,15 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import ReactTestUtils from "react-dom/test-utils";
 
 import Gallery from "../Gallery";
-
-// Wrapper component to use renderIntoDocument functional components
-class Wrapper extends React.Component {
-    render() {
-        return this.props.children
-    }
-}
 
 describe('Component - Gallery', () => {
 
@@ -42,15 +34,13 @@ describe('Component - Gallery.Photo', () => {
 
     test('The div parent element is clicked. OnClick prop should have been called one time', () => {
         const onClick = jest.fn();
-        const tree = ReactTestUtils.renderIntoDocument(<Wrapper><Gallery.Photo photo={photoMock} onClick={onClick} /></Wrapper>);
-        //Get all div components
-        const divComponents = ReactTestUtils.scryRenderedDOMComponentsWithTag(tree, "div");
+        const tree = renderer.create(<Gallery.Photo photo={photoMock} onClick={onClick} />);
 
-        //Get first div, which corresponds to the parent div
-        const parentDiv = divComponents[0];
+        //Get parent div component
+        const parentDiv = tree.root.findByType('div');
 
         //Execute onClick
-        ReactTestUtils.Simulate.click(parentDiv);
+        parentDiv.props.onClick();
 
         //Assert
         expect(onClick).toHaveBeenCalledTimes(1);
