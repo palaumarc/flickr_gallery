@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component is rendered with two children. Snapshot 1`] = `
+<div
+  className="lightbox"
+>
+  <div
+    className="lightbox-close"
+    onClick={[Function]}
+  >
+    ×
+  </div>
+  <div
+    className="lightbox-content"
+  >
+    <div>
+      Lightbox child 1
+    </div>
+    <div>
+      Lightbox child 2
+    </div>
+  </div>
+</div>
+`;
