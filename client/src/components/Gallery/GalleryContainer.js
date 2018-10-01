@@ -1,11 +1,11 @@
 import React, { Component, Fragment } from 'react';
-import InfiniteScroll from './InfiniteScroll';
+import InfiniteScroll from '../utils/InfiniteScroll';
 
 import Gallery from './Gallery';
 import PhotoDetail from './PhotoDetail';
-import Lightbox from './Lightbox';
-import { fetchPhotos } from '../services/ApiCalls';
-import Carousel from './Carousel';
+import Lightbox from '../utils/Lightbox';
+import Carousel from '../utils/Carousel';
+import { fetchPhotos } from '../../services/ApiCalls';
 
 const PHOTOS_PER_PAGE = 15;
 
