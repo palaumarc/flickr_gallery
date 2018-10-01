@@ -8,7 +8,19 @@ app.use('/', express.static('../client/build'));
 
 app.get('/api/photos', (req, res) => {
 
-    const url = `https://api.flickr.com/services/rest/?method=flickr.photos.getRecent&api_key=${config.apiKey}&extras=url_l%2C+url_q%2C+description%2C+media%2C+owner_name&format=json&nojsoncallback=1`;
+    const perPage = req.query.per_page;
+    const page = req.query.page;
+
+    let url = `https://api.flickr.com/services/rest/?method=flickr.photos.getRecent&api_key=${config.apiKey}&extras=url_l%2C+url_q%2C+description%2C+media%2C+owner_name&format=json&nojsoncallback=1`;
+    
+    if (perPage) {
+        url += `&per_page=${perPage}`;
+    }
+
+    if (page) {
+        url += `&page=${page}`;
+    }
+
     fetch(url)
         .then(response => response.json())
         .then(data => {

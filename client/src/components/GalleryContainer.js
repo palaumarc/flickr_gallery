@@ -1,17 +1,19 @@
 import React, { Component, Fragment } from 'react';
+import InfiniteScroll from './InfiniteScroll';
 
-import Spin from './Spin';
 import Gallery from './Gallery';
 import PhotoDetail from './PhotoDetail';
 import Lightbox from './Lightbox';
 import { fetchPhotos } from '../services/ApiCalls';
 import Carousel from './Carousel';
 
+const PHOTOS_PER_PAGE = 15;
+
 class GalleryContainer extends Component {
 
     state = {
-        isLoading: false,
         photos: [],
+        currentPage: 0,
         selectedPhotoIndex: null
     }
 
@@ -19,25 +21,37 @@ class GalleryContainer extends Component {
     
     onClosePhotoDetail = () => this.setState({...this.state, selectedPhotoIndex: null});
 
-    async componentDidMount() {
-        this.setState({...this.state, isLoading: true});
-        const photos = await fetchPhotos();
-        this.setState({...this.state, isLoading: false, photos});
+    selectNextPhoto = () => {
+        const newIndex = this.state.selectedPhotoIndex + 1;
+        this.setState({...this.state, selectedPhotoIndex: newIndex});
+    }
+
+    selectPreviousPhoto = () => {
+        const newIndex = this.state.selectedPhotoIndex - 1;
+        this.setState({...this.state, selectedPhotoIndex: newIndex});
+    }
+
+    loadPhotos = async () => {
+        const pageToLoad = this.state.currentPage + 1;
+        const newPhotos = await fetchPhotos(pageToLoad, PHOTOS_PER_PAGE);
+        this.setState(prevState => ({
+            ...this.prevState, 
+            currentPage: pageToLoad, 
+            photos: prevState.photos.concat(newPhotos)
+        }));
     }
 
     render() {
 
-        const { isLoading, photos, selectedPhotoIndex } = this.state;
-
-        if (isLoading) {
-            return <Spin />;
-        }
+        const { photos, selectedPhotoIndex } = this.state;
 
         return (
             <Fragment>
-                <Gallery>
-                    {photos.map((photo, index) => <Gallery.Photo key={photo.id} photo={photo} onClick={() => this.onClickPhoto(index)}/>)}
-                </Gallery>
+                <InfiniteScroll loadMore={this.loadPhotos} hasMore={true}>
+                    <Gallery>
+                        {photos.map((photo, index) => <Gallery.Photo key={`${photo.id}-${index}`} photo={photo} onClick={() => this.onClickPhoto(index)}/>)}
+                    </Gallery>
+                </InfiniteScroll>
                 {selectedPhotoIndex !== null ?
                 <Lightbox onClose={this.onClosePhotoDetail}>
                     <Carousel defaultIndex={selectedPhotoIndex}>
