@@ -1,26 +1,32 @@
 import React, { Component, Fragment } from 'react';
+import PropTypes from 'prop-types';
+
 import Spin from './Spin';
 
 class InfiniteScroll extends Component {
 
-  state = {
-    isLoading: false
+  static propTypes = {
+      loadMore: PropTypes.func.isRequired,
+      hasMore: PropTypes.bool
   }
 
-   // Binds our scroll event handler
-  onscroll = () => {
-    const { isLoading } = this.state;
+  static defaultProps = {
+      hasMore: true
+  }
 
-    // Bails early if:
-    // * there's an error
-    // * it's already loading
-    // * there's nothing left to load
-    if (isLoading) return;
+  state = {
+      isLoading: false
+  }
 
-    // Checks that the page has scrolled to the bottom
-    if (window.innerHeight + document.documentElement.scrollTop === document.documentElement.offsetHeight) {
-      this.execLoadMore();
-    }
+  onScroll = () => {
+      const { isLoading } = this.state;
+
+      if (isLoading) return;
+
+      // Checks that the page has scrolled to the bottom
+      if (window.innerHeight + document.documentElement.scrollTop === document.documentElement.offsetHeight) {
+        this.execLoadMore();
+      }
   };
 
   execLoadMore = async () => {
@@ -29,13 +35,14 @@ class InfiniteScroll extends Component {
       this.setState({isLoading: false})
 
       if (!this.props.hasMore) {
-          document.removeEventListener('scroll', this.onscroll);
+          document.removeEventListener('scroll', this.onScroll);
       }
   }
 
   async componentDidMount() {
-    document.addEventListener('scroll', this.onscroll);
+    document.addEventListener('scroll', this.onScroll);
 
+    // Keep loading until available height is filled or there are no more elements
     while (document.documentElement.offsetHeight < window.innerHeight && this.props.hasMore) {
       await this.execLoadMore();
     }

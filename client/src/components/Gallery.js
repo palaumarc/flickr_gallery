@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import './Gallery.css';
 
 const Gallery = ({ children }) => (
@@ -15,6 +17,14 @@ const GalleryPhoto = ({ photo, onClick }) => (
         </div>
     </div>
 )
+
+GalleryPhoto.propTypes = {
+    onClick: PropTypes.func,
+    photo: PropTypes.shape({
+        previewUrl: PropTypes.string,
+        title: PropTypes.string,
+    }).isRequired
+}
 
 Gallery.Photo = GalleryPhoto;
 

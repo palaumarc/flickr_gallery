@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import './PhotoDetail.css'
 
 const PhotoDetail = ({ photo }) => (
@@ -13,5 +15,16 @@ const PhotoDetail = ({ photo }) => (
         </div>
     </div>
 );
+
+PhotoDetail.propTypes = {
+    photo: PropTypes.shape({
+        previewUrl: PropTypes.string,
+        fullSizeUrl: PropTypes.string,
+        title: PropTypes.string,
+        flickrRedirectUrl: PropTypes.string,
+        username: PropTypes.string,
+        description: PropTypes.string
+    }).isRequired
+}
 
 export default PhotoDetail;

@@ -1,17 +1,21 @@
 import React, { Component } from 'react';
-import './Carousel.css'
+import PropTypes from 'prop-types';
 
-const DEFAULT_INDEX = 0;
+import './Carousel.css'
 
 class Carousel extends Component {
 
-    getStartIndex = () => {
-        const { children, startIndex } = this.props;
-        if (startIndex === undefined || startIndex < 0 || startIndex >= React.Children.count(children)) {
-            return DEFAULT_INDEX;
-        }
+    static propTypes = {
+        startIndex: PropTypes.number,
+        children: PropTypes.node.isRequired,
+    }
 
-        return startIndex;
+    static defaultProps = {
+        startIndex: 0
+    }
+
+    state = {
+        selectedIndex: this.props.startIndex
     }
 
     selectNext = () => {
@@ -22,10 +26,6 @@ class Carousel extends Component {
     selectPrevious = () => {
         const newIndex = this.state.selectedIndex - 1;
         this.setState({...this.state, selectedIndex: newIndex});
-    }
-
-    state = {
-        selectedIndex: this.getStartIndex()
     }
 
     render() {
