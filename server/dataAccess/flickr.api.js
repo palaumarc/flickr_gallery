@@ -21,12 +21,14 @@ const fetchRecentPhotos = (page, perPage) => {
                     if (!response.ok || responseData.stat === 'fail') {
                         throw new Error(responseData.message);
                     }
+
+                    return responseData;
                 })
             });
 }
 
-const convertFetchRecentPhotosResponseToServiceStructure = response => {
-    const photos = response.photos.photo.map(photo => {
+const convertFetchRecentPhotosResponseToServiceStructure = responseData => {
+    const photos = responseData.photos.photo.map(photo => {
         return {
             id: photo.id,
             fullSizeUrl: photo.url_l,
@@ -38,7 +40,7 @@ const convertFetchRecentPhotosResponseToServiceStructure = response => {
         }
     })
 
-    const hasMore = response.photos.page < response.photos.pages;
+    const hasMore = responseData.photos.page < responseData.photos.pages;
 
     return {
         photos,
