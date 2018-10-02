@@ -8,6 +8,8 @@ The gallery loads a small subset of images and loads more via infinite scroll te
 
 Only tested on Google Chrome v69, Safari v12 and Mozilla Firefox v57. Running in different web browsers or versions may lead to unexpected behaviour.
 
+There is no error view implemented, so if there is any error the App will only log the error message in the console.
+
 ## Prerequisites
 
 Node: v10.10 is recommended. Previous versions are discouraged and may lead to unexpected behaviour.

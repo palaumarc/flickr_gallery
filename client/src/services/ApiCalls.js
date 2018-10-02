@@ -14,6 +14,12 @@ export const fetchPhotos = async (page, photosPerPage) => {
 
     const response = await fetch(url);
     const data = await response.json();
+
+    if (!response.ok) {
+        // In error case, the server will send the error message in the body response
+        throw new Error(data);
+    }
+
     return data;
 };
 

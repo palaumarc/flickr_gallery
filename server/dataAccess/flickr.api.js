@@ -14,7 +14,15 @@ const fetchRecentPhotos = (page, perPage) => {
     }
 
     return fetch(url)
-        .then(response => response.json())
+        .then(response => {
+            return response.json()
+                .then(responseData => {
+                    //Throw error in case of Flickr API retrieved errors
+                    if (!response.ok || responseData.stat === 'fail') {
+                        throw new Error(responseData.message);
+                    }
+                })
+            });
 }
 
 const convertFetchRecentPhotosResponseToServiceStructure = response => {

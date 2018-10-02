@@ -11,6 +11,7 @@ app.get('/api/photos', (req, res) => {
 
     photosService.getRecentPhotos(page, perPage)
         .then(response => res.status(200).json(response))
+        .catch(error => res.status(500).json(`Server internal error: ${error.message}`))
 
 });
 
