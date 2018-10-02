@@ -30,7 +30,7 @@ const convertFetchRecentPhotosResponseToServiceStructure = response => {
         }
     })
 
-    const hasMore = response.photos.page < data.photos.pages;
+    const hasMore = response.photos.page < response.photos.pages;
 
     return {
         photos,
@@ -38,7 +38,9 @@ const convertFetchRecentPhotosResponseToServiceStructure = response => {
     }
 }
 
-const fetchRecentPhotosAndConvertToServiceStructure = () => fetchRecentPhotos(page, perPage).then(convertFetchRecentPhotosResponseToServiceStructure)
+const fetchRecentPhotosAndConvertToServiceStructure = (page, perPage) => {
+    return fetchRecentPhotos(page, perPage).then(convertFetchRecentPhotosResponseToServiceStructure);
+}
 
 module.exports = {
     fetchRecentPhotos: fetchRecentPhotosAndConvertToServiceStructure
