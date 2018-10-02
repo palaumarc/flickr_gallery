@@ -1,6 +1,6 @@
 # Flickr Gallery
 
-Responsive gallery that shows most recent images load to Flickr.
+Responsive gallery that shows most recent images loaded to Flickr.
 
 On image click a lightbox is opened showing some information of it, such as the title, the description and the owner's username (which links to the original post on Flickr).
 
@@ -27,9 +27,9 @@ You have to edit its value in *server/config.js*, as indicated in the file.
 
 For now, the *imagesPerPage* parameter is not editable from a config file. If it is necessary to change it, it can be done editing the *PHOTOS_PER_PAGE* variable in the source code of *client/src/components/GalleryContainer.js*
 
-## Getting Started with a Development servers
+## Getting Started with development servers
 
-**It is necessary to configure the app before starting it. Read Configuration chapter**
+**It is necessary to configure the app before starting it. Read Configuration chapter.**
 
 For development purposes, the client is served by a dedicated development server.
 
@@ -55,7 +55,7 @@ npm test
 
 ## Deployment
 
-**It is necessary to configure the app before starting it. Read Configuration chapter**
+**It is necessary to configure the app before starting it. Read Configuration chapter.**
 
 This will generate production-ready client files, ready to be served from the backend server. After that, it will start it. The app will be accessible on: http://localhost:8080
 
