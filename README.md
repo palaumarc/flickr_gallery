@@ -6,13 +6,19 @@ On image click a lightbox is opened showing some information of it, such as the 
 
 The gallery loads a small subset of images and loads more via infinite scroll technique. Each request loads 15 new images. When the max page number is reached, the infinite scroll is deactivated.  
 
-Only tested on Google Chrome v69, Safari v12 and Mozilla Firefox v57. Running in different web browsers or versions may lead to unexpected behaviour.
-
 There is no error view implemented, so if there is any error the App will only log the error message in the console.
+
+## Browser compatibility
+
+The App has been only tested on Google Chrome v69, Safari v12 and Mozilla Firefox v57. Running in different web browsers or versions may lead to unexpected behaviour.
+
+**Known issues:**
+- *Safari*: infinite scroll is not working and ligthbox responsiveness is not working as expected
+- *Firefox*: lightbox responsiveness is not working as expected
 
 ## Prerequisites
 
-Node: v10.10 is recommended. Previous versions are discouraged and may lead to unexpected behaviour.
+- *Node*: v10.10 is recommended. Previous versions are discouraged and may lead to unexpected behaviour.
 
 ## Installing
 
@@ -38,11 +44,15 @@ For development purposes, the client is served by a dedicated development server
 This will start the backend server on port 8080 and the client dev server on port 3000, both in watch mode.
 The app will be accessible on: http://localhost:3000.
 
-To start the dev servers, from the root folder:
+First, start the backend server. From the root folder:
 ```
 cd server
 npm run watch
-cd ../client
+```
+
+After that, in a new terminal, start the client dev server. From the root folder:
+```
+cd client
 npm start
 ```
 
