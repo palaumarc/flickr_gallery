@@ -1,0 +1,1 @@
+exports.flickrApiKey = "yourAwesomeFlickrApiKey";

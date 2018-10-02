@@ -3,7 +3,7 @@ const config = require('../config')
 
 const fetchRecentPhotos = (page, perPage) => {
 
-    let url = `https://api.flickr.com/services/rest/?method=flickr.photos.getRecent&api_key=${config.apiKey}&extras=url_l%2C+url_q%2C+description%2C+media%2C+owner_name&format=json&nojsoncallback=1`;
+    let url = `https://api.flickr.com/services/rest/?method=flickr.photos.getRecent&api_key=${config.flickrApiKey}&extras=url_l%2C+url_q%2C+description%2C+media%2C+owner_name&format=json&nojsoncallback=1`;
 
     if (perPage) {
         url += `&per_page=${perPage}`;
