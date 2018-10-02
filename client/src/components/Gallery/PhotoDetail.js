@@ -9,7 +9,7 @@ const PhotoDetail = ({ photo }) => (
         <div className="photo-detail-content-info-container">
             <span className="photo-detail-content-info-title">{photo.title}</span> 
             - 
-            <span className="photo-detail-content-info-username" onClick={() => window.open(photo.flickrRedirectUrl)}>{photo.username}</span>
+            <span className="photo-detail-content-info-username" onClick={() => window.open(photo.originalPostUrl)}>{photo.username}</span>
             <br />
             <span className="photo-detail-content-info-description">{photo.description}</span>
         </div>
@@ -21,7 +21,7 @@ PhotoDetail.propTypes = {
         previewUrl: PropTypes.string,
         fullSizeUrl: PropTypes.string,
         title: PropTypes.string,
-        flickrRedirectUrl: PropTypes.string,
+        originalPostUrl: PropTypes.string,
         username: PropTypes.string,
         description: PropTypes.string
     }).isRequired

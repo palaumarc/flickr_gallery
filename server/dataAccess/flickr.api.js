@@ -23,7 +23,7 @@ const convertFetchRecentPhotosResponseToServiceStructure = response => {
             id: photo.id,
             fullSizeUrl: photo.url_l,
             previewUrl: photo.url_q,
-            flickrRedirectUrl: `https://www.flickr.com/photos/${photo.owner}/${photo.id}`,
+            originalPostUrl: `https://www.flickr.com/photos/${photo.owner}/${photo.id}`,
             title: photo.title,
             description: photo.description._content,
             username: photo.ownername
